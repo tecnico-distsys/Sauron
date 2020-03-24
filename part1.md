@@ -374,6 +374,8 @@ Esta alteração é importante para a gestão de dependências, para garantir qu
 O [Git](https://git-scm.com/doc) é um sistema de controlo de versões do código fonte que é uma grande ajuda para o trabalho em equipa. 
 Toda a partilha de código para trabalho deve ser feita através do [GitHub](https://github.com). 
 
+O repositório de cada grupo está disponível em: https://github.com/tecnico-distsys/CXX-Sauron/ (substituir `CXX` pelo identificador de grupo).
+
 A atualização do repositório deve ser feita com regularidade, correspondendo à distribuição de trabalho entre os membros da equipa e às várias etapas de desenvolvimento. 
 Cada elemento do grupo deve atualizar o repositório do seu grupo à medida que vai concluindo as várias tarefas que lhe foram atribuídas.
 
