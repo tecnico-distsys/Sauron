@@ -339,9 +339,9 @@ Não se exige nem será valorizado o armazenamento persistente do estado dos ser
 
 Em resumo, na primeira parte do trabalho, é necessário implementar:  
 o servidor, *silo*;  
-o cliente de testes automáticos, *silo-client*;  
-o cliente para carregamento de dados, *eye*;   
-e o cliente para interrogação, *spotter*.  
+o cliente com testes automáticos, *silo-client*;  
+o cliente para carregamento de dados, *eye*; e  
+o cliente para interrogação, *spotter*.  
 O *eye* e o *spotter* oferecem uma interface-utilizador baseada na linha de comandos.
 
 
