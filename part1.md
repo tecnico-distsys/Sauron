@@ -154,7 +154,7 @@ Ao receber uma linha vazia, ou ao detetar o fecho do *standard input*, o cliente
 
 O *eye* deverá receber como argumentos na linha de comando, o servidor e o porto do *silo*, o nome da câmera e as coordenadas onde está localizada, em [notação decimal](https://en.wikipedia.org/wiki/Decimal_degrees).
 
-Por exemplo, o *eye* pode ser lançado da seguinte forma:
+Por exemplo, o *eye* pode ser lançado da seguinte forma ($ representa a _shell_ do sistema operativo):
 
     $ eye localhost 8080 Tagus 38.737613 -9.303164
 
@@ -251,24 +251,24 @@ A data-hora deve seguir o formato textual [ISO 8601](https://www.iso.org/iso-860
 
 Procura com o identificador exatamente igual ao indicado, e nada é devolvido (linha vazia):
 
-    $ spot person 14388236
+    > spot person 14388236
     
 
 Procura com o identificador exatamente igual ao indicado, e é devolvido um resultado:
 
-    $ spot car 7013LL
+    > spot car 7013LL
     car,7013LL,2019-10-04T10:02:07,Tagus,38.737613,-9.303164
 
 Procura por identificadores que começam com o valor parcial indicado.
 Neste caso, apenas foi encontrado um resultado:
 
-    $ spot car 70*
+    > spot car 70*
     car,7013LL,2019-10-04T10:02:07,Tagus,38.737613,-9.303164
 
 Procura por identificadores que terminam nos valores indicados. 
 Foram encontrados dois resultados, que aparecem ordenados por identificador crescente:
 
-    $ spot car *LL
+    > spot car *LL
     car,5759LL,2019-10-22T09:07:51,Tagus,38.737613,-9.303164
     car,7013LL,2019-10-04T11:02:07,Tagus,38.737613,-9.303164
 
@@ -281,11 +281,11 @@ O resultado são linhas com o mesmo formato do comando *spot*.
 
 Procura o rasto do objeto com o identificador igual ao indicado, e nada é devolvido (linha vazia):
 
-    $ trail person 14388236
+    > trail person 14388236
 
 Procura o rasto do objeto com o identificador igual ao indicado, e são devolvidos três resultados:
 
-    $ trail car 7013LL
+    > trail car 7013LL
     car,7013LL,2019-10-04T10:02:07,Tagus,38.737613,-9.303164
     car,7013LL,2019-10-03T08:10:20,Alameda,38.736748,-9.138908
     car,7013LL,2019-10-02T22:33:01,Tagus,38.737613,-9.303164
