@@ -6,7 +6,7 @@ Enunciado do projeto Sauron
 
 - [Parte 1](part1.md)
 
-- Parte 2
+- [Parte 2](part2.md)
 
 ----
 
