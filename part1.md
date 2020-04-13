@@ -53,6 +53,7 @@ As operações a disponibilizar por um servidor *silo* são as seguintes:
 -   `cam_join` -- regista uma câmera.  
 Recebe um nome de uma nova câmera e as suas coordenadas de localização.  
 O nome indicado tem que ser único i.e. não pode ser duplicado de um já existente;
+É possível registar várias vezes uma câmera com o mesmo nome e as mesmas coordenadas;
 
 -   `cam_info` -- recebe o nome de uma câmera e devolve as suas coordenadas de localização;
 
@@ -65,7 +66,7 @@ O servidor regista as observações com a sua data e hora, no momento da receç�
 Recebe o tipo de objeto a localizar e o identificador do objeto procurado.  
 Devolve a observação mais recente do objeto procurado;
 
--   `trackMatch` -- permite localizar um objeto observado com parte do seu identificador.  
+-   `track_match` -- permite localizar um objeto observado com parte do seu identificador.  
 Recebe o tipo de objeto a localizar e parte do identificador do objeto procurado.  
 Devolve a observação mais recente para cada objeto encontrado, sem nenhuma ordenação específica;
 
@@ -95,6 +96,8 @@ Por exemplo, `*7` representa qualquer número terminado em 7, como 137, o 87 e o
 `22*` representa qualquer número começado por 22, como 221 e 22;  
 `22*7` representa qualquer número começado por 22 e terminado em 7, como 2207 ou 227.
 
+Apenas é necessário suportar um carácter especial `*` por expressão, como nos exemplos apresentados acima.
+
 O identificador de um carro é uma matrícula com o formato português, ou seja, é texto estruturado em três grupos de dois caracteres.
 Para cada grupo, os caracteres podem ser letras do alfabeto (maiúsculas) ou dígitos decimais.
 Um grupo ou é de letras ou é de dígitos.
@@ -105,19 +108,19 @@ Por exemplo, `*AA` representa qualquer matrícula terminada por AA, como AA00AA;
 `B*` representa qualquer matrícula começada por B, como BA1080;  
 `701*L` representa qualquer matrícula começada por 701 e terminada em L, como 7019XL.
 
-
 ### Operações de controlo
 
 Cada servidor deve dispor também de um conjunto de operações de controlo. 
 Estas operações destinam-se a facilitar a realização de testes.
-Estas funções não necessitam elas próprias de ser testadas exaustivamente.  
 Por convenção, o nome das operações de controlo deve começar por `ctrl_`.
 
 -   `ctrl_ping` -- recebe um pedido de sinal de vida e responde com uma mensagem indicando o estado do servidor;
 
 -   `ctrl_clear` -- deve limpar totalmente o estado do servidor;
 
--   `ctrl_init...` -- permitem definir parâmetros de configuração inicial do servidor.
+-   `ctrl_init...` -- permitem definir parâmetros de configuração inicial do servidor e preencher com dados de exemplo para teste.
+
+As operações de controlo não necessitam elas próprias de ser testadas exaustivamente.
 
 
 ### Biblioteca cliente
@@ -239,7 +242,7 @@ Atente que estes comandos são parecidos com as operações do servidor *silo* m
 
 ### Comando *spot*
 
-O comando `spot` procura a observação do objeto ou pessoa com o identificador ou fragmento de identificador. 
+O comando `spot` procura a observação mais recente do objeto ou pessoa com o identificador ou fragmento de identificador. 
 O resultado devem ser linhas com o formato:
 
     Tipo,Identificador,Data-Hora,Nome-Câmera,Latitude-Câmera,Longitude-Câmera
@@ -253,7 +256,6 @@ Procura com o identificador exatamente igual ao indicado, e nada é devolvido (l
 
     > spot person 14388236
     
-
 Procura com o identificador exatamente igual ao indicado, e é devolvido um resultado:
 
     > spot car 7013LL
@@ -328,10 +330,22 @@ Podem consultar mais informação sobre métodos-fábrica no livro [Bloch, Effec
 
 Recomenda-se que o código do servidor *silo* contenha um pacote `domain` onde são representadas as entidades e comportamentos do domínio.
 O código gRPC deve ser visto como uma camada de apresentação.
+A camada de domínio não deverá depender da camada de apresentação.
 
 ### Persistência
 
 Não se exige nem será valorizado o armazenamento persistente do estado dos servidores. 
+
+### Validações 
+
+Os argumentos das operações devem ser validados obrigatóriamente e de forma estrita pelo servidor.  
+Os clientes podem optar por também validar, de modo a evitar pedidos desnecessários para o servidor, mas podem optar por uma versão mais simples da validação.
+
+### Faltas
+
+Se durante a execução surgirem faltas, ou seja, acontecimentos inesperados, o programa deve apanhar a exceção, imprimir informação sucinta e pode parar de executar.  
+Se for um servidor, o programa deve responder ao cliente com um código de erro adequado.  
+Se for um dos clientes, pode decidir parar com o erro recebido ou fazer novas tentativas de pedido.
 
 
 4 Resumo
@@ -384,7 +398,7 @@ Propõe-se a seguinte divisão de tarefas:
 - bloco central - (_a fazer por toda a equipa em conjunto_) - *protocol buffers* do *silo* e biblioteca *silo-client*;
 - bloco T1 - operações `cam_join`, `cam_info` do servidor *silo* e cliente *eye*;
 - bloco T2 - operação `report` do servidor *silo* e cliente *spotter*;
-- bloco T3 - operações `track`, `trackMatch` e `trace` do servidor *silo*.
+- bloco T3 - operações `track`, `track_match` e `trace` do servidor *silo*.
 
 Cada membro da equipa deve liderar um dos blocos de tarefas T1, T2 ou T3; e liderar os testes de outro bloco.
 
