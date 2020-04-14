@@ -1,0 +1,12 @@
+# lote 1
+person,123456789
+car,00AA00
+
+# pausa de 5 segundos
+zzz,5000
+
+# lote 2
+car,00AA00
+car,68XY20
+person,111111000
+
