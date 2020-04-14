@@ -102,17 +102,6 @@ Especificamente, pretende-se oferecer a seguinte **garantia**: caso a resposta e
 Assim, ao descartar uma resposta desatualizada (do ponto de vista do cliente), garante-se a coerência de leituras no cliente.
 
 
-2.4 Atualizações imediatas
---------------------------
-
-Deverá ser criado um **modo alerta** em que as observações que satisfaçam um certo padrão, por exemplo `car 70*` ou `person *1`, passam a ser propagadas imediatamente para todas as réplicas conhecidas, sem esperar pelo próximo *gossip*.
-
-O cliente *spotter* deverá ter um novo comando, `alert`, que permite ativar o modo e que recebe o padrão da pessoa ou carro.  
-Por simplificação, pode-se assumir que este modo apenas funciona para um padrão de cada vez.
-
-A implementação deste modo tem de ser tolerante a faltas, de acordo com o modelo descrito em 2.1.
-
-
 3 Resumo
 --------
 
@@ -139,15 +128,13 @@ A segunda parte vale 10 valores em 20, distribuídos da seguinte forma:
 
 - Replicação do *silo* em múltiplos servidores (1 valor)
 
-- Atualização (*gossip*) entre réplicas (2 valores)
+- Atualização (*gossip*) entre réplicas (2,5 valores)
 
 - Leituras coerentes pelo mesmo cliente (1,5 valores)
 
-- Modo de atualização imediata (1,5 valores)
+- Relatório e demonstração (2 valores)
 
-- Relatório e demonstração (1,5 valores)
-
-- Qualidade do código -- os mesmos aspetos da primeira parte -- em todos os componentes (1 valor)
+- Qualidade do código -- os mesmos aspetos da primeira parte -- em todos os componentes (1,5 valores)
 
 A data limite de entrega é: **sábado, 2 de maio de 2020, 17:00**.
 
@@ -180,11 +167,16 @@ O relatório deve ter entre 1000 e 1500 palavras.
 4.4 Demonstração
 ----------------
 
-As instruções de instalação e configuração de todo o sistema, elaboradas na primeira parte, devem ser atualizadas no documento `demo/README.md`.
+As instruções de instalação e configuração de todo o sistema, elaboradas na primeira parte, devem ser atualizadas no documento `demo/README.md`.  
+Como referência, pode ser consultado um [guião de demonstração de exemplo](demo/README.md). 
 
-Deve ser criada uma **nova secção** dedicada às funcionalidades da **segunda parte**.
-A duração total da demonstração da segunda parte deverá ser inferior a *5* minutos.
-A demonstração do trabalho será realizada ao vivo antes da discussão.
+Para a segunda parte deve ser criada uma **nova secção** no guião, dedicada à **replicação e tolerância a faltas**.
+Nesta nova secção, devem ser indicados os comandos para: lançar réplicas, fornecer dados, fazer interrogações, etc.
+Deve também ser indicado o que se espera que aconteça em cada caso.  
+O guião de demonstração deve apresentar situações de *funcionamento normal com replicação* e também situações de *tolerância a faltas*.
+
+Tenham em conta que a demonstração do trabalho será realizada ao vivo, antes da discussão, seguindo as instruções indicadas no guião entregue.  
+A duração total da demonstração da segunda parte deve ser inferior a 5 minutos.
 
 
 4.5 Discussão
