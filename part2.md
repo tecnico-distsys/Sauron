@@ -144,11 +144,12 @@ A data limite de entrega é: **sábado, 2 de maio de 2020, 17:00**.
 
 Na segunda parte, além do código-fonte, deve também ser elaborado e entregue um relatório em formato [*MarkDown*](https://guides.github.com/features/mastering-markdown/).
 
-O documento tem que chamar-se `report/README.MD` e as imagens e restantes recursos devem ser colocados na pasta `report/`.
+O documento tem que chamar-se `report/README.MD`, de acordo com a [estrutura de exemplo](report/README.md).  
+As imagens e restantes recursos devem também ser colocados na pasta `report/`.
 
 Conteúdos obrigatórios:
 
-- Identificador do grupo em formato *CXX*, fotos, números e nomes dos membros do grupo (ordenados por número de estudante crescente, da esquerda para a direita)
+- Identificador do grupo em formato *CXX*, fotos, números e nomes dos membros do grupo (ordenados por número de estudante crescente)
 
 - Definição do modelo de faltas (que faltas são toleradas, que faltas não são toleradas);
 
