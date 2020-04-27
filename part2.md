@@ -105,7 +105,7 @@ Assim, ao descartar uma resposta desatualizada (do ponto de vista do cliente), g
 3 Resumo
 --------
 
-Em resumo, na segunda parte do trabalho, é necessário criar várias réplicas do *silo*, em que cada uma pode responder autonomamente a clientes, em que existe partilha periódica de atualizações entre réplicas (*gossip*), em que são evitadas leituras incoerentes por um mesmo cliente, e em que é possível ativar um modo de atualização imediata.
+Em resumo, na segunda parte do trabalho, é necessário criar várias réplicas do *silo*, em que cada uma pode responder autonomamente a clientes, em que existe partilha periódica de atualizações entre réplicas (*gossip*) e em que são evitadas leituras incoerentes por um mesmo cliente.
 
 
 4 Avaliação 
