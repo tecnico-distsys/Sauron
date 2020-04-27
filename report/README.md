@@ -20,6 +20,14 @@ Sistemas Distribuídos 2019-2020, segundo semestre
 *(usar imagens com 150px de altura; e depois apagar esta linha)*  
 ![Alice](alice.png) ![Bob](bob.png) ![Charlie](charlie.png)
 
+
+## Melhorias da primeira parte
+
+_(que correções ou melhorias foram feitas ao código da primeira parte -- incluir link para commits no GitHub onde a alteração foi feita)_
+
+- [descrição da alteração](https://github.com/tecnico-distsys/CXX-Sauron/commit/156e1ac25798e2360b362b3a8fc474f7cfe64d01)
+
+
 ## Modelo de faltas
 
 _(que faltas são toleradas, que faltas não são toleradas)_
