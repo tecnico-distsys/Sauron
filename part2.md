@@ -30,6 +30,10 @@ Os nomes a usar para os serviços são: `/grpc/sauron/silo/1`, `/grpc/sauron/sil
 O servidor de nomes a usar é o [ZooKeeper](https://zookeeper.apache.org/) à escuta no porto por omissão.
 Para simplificar o código de acesso ao servidor, deve ser usada a biblioteca [ZKNaming](https://github.com/tecnico-distsys/naming).
 
+A informação presente no ZooKeeper pode estar desatualizada.
+Por exemplo, pode suceder uma réplica estar registada no ZooKeeper, mas já ter sofrido uma falha.
+
+
 1.2 Atualização dos argumentos de linha de comando
 --------------------------------------------------
 
@@ -67,6 +71,16 @@ Como modelos de interação e faltas, deve assumir-se que:
 - Existe sempre, pelo menos, uma réplica ativa para atender os clientes;
 
 - As falhas das réplicas são transientes e não definitivas.
+
+Devem considerar faltas silenciosas do servidor.  
+A falta silenciosa pode ser feita terminando o programa abruptamente (por exemplo, fechando a janela do terminal, ou fazendo o comando `kill -9` que envia um `SIGKILL` que, ao contrário do `SIGTERM`, não pode ser tratado).
+
+As faltas na comunicação devem ser toleradas.  
+Por omissão, um cliente inicia-se, descobre as réplicas existentes através do ZooKeeper e depois escolhe uma réplica com quem comunicar.
+O cliente pode optar por contactar novamente a mesma réplica ou então pode contactar outra réplica que esteja disponível.
+Este comportamento de tolerância a faltas pode ser concretizado dentro do *front-end*, de forma transparente para o restante código das aplicações clientes, e também de forma que se deseja imperceptível para o utilizador final.
+
+Não é necessário tolerar a falta do registo de serviços (ZooKeeper).
 
 
 2.2 Atualização de réplicas entre si
@@ -164,6 +178,10 @@ Conteúdos obrigatórios:
 O relatório deve ter entre 1000 e 1500 palavras.
 <!-- 2-3 páginas, assumindo 500 palavras por página A4 -->
 
+O formato da figura é livre.  
+Sugestão: poderá ser um diagrama UML de colaboração, que representa simultaneamente a estrutura e o comportamento da solução, de forma sucinta. 
+Pode também ser um diagrama de sequência da parte mais importante do protocolo.
+
 
 4.4 Demonstração
 ----------------
@@ -179,6 +197,23 @@ O guião de demonstração deve apresentar situações de *funcionamento normal 
 Tenham em conta que a demonstração do trabalho será realizada ao vivo, antes da discussão, seguindo as instruções indicadas no guião entregue.  
 A duração total da demonstração da segunda parte deve ser inferior a 5 minutos.
 
+Para permitir observar o que se passa "dentro" de cada programa do projeto, é muito importante que cada componente imprima mensagens para a consola.
+As mensagens devem ser sucintas mas informativas, descrevendo o passo do protocolo que está a decorrer.
+É como se cada componente contasse a sua história, o que está a fazer e porquê.
+
+Exemplos de boas mensagens (meramente ilustrativas):
+
+* _"Replica 2 starting..."_
+* _"Replica 2 initiating gossip..."_
+* _"Contacting replica 1 at localhost:8081… sending 'X'..."_
+* _"Received 'Y'..."_
+* _"Caught exception 'Z' when trying to contact replica 3 at localhost:8083"_
+* _"Trying to contact another replica to tolerate fault"_
+* _"Caught exception 'W' when trying to contact replica 2 at localhost:8082"_
+* _"Tried all known replicas, without success. Failing."_
+* _"Frontend received answer with TS 'A, B, C'..."_
+
+É muito importante que os programas indiquem qual o servidor - máquina e porto - a que se estão a ligar.
 
 4.5 Discussão
 -------------
